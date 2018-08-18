@@ -1,0 +1,14 @@
+<html>
+  <head>
+    <title>Prediction</title>
+    <script>
+      var result = {{ res }}
+    </script>
+  </head>
+  <body>
+    <h3>This is our Prediction</h3>
+    {% for user in res %}
+      <li>{{ user }}</li>
+    {% endfor %}
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>FutureBase</title>
+
+  <!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<header>
+<div class="navbar-header text-center">
+  <h1 style="color: white"><small>FutureBase</small></h1>
+</div>
+
+
+<div class = "container-fluid">
+<ul class="nav navbar-nav navbar-right">
+	  <div style="margin-right: 10px; margin-left: 15px; margin-top: 5px; margin-bottom: 5px;"  class="container-fluid">
+		<h5>
+		<a role="presentation" data-toggle="modal" data-target="#exampleModal" href="#"><span class="glyphicon glyphicon-log-in"></span> Login   </a>
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<h4 class="modal-title" id="exampleModalLabel">Login</h4>
+			  </div>
+			  <div class="modal-body">
+				  <div class="container-fluid">
+					  <form action="" class="form-inline" method="post">
+						<input type="text" class="form-control" placeholder="Username" name="username" value="">
+						<input type="password" class="form-control" placeholder="Password" name="password" value="">
+						<input class="btn btn-primary" type="submit" value="Login">
+					  </form>
+			</div>
+		</div>
+	</div>
+</div>
+		</div>
+
+	<a role="presentation" class="active" data-toggle="modal" data-target="#register" href="#"><span class="glyphicon glyphicon-pencil"></span> Sign up</a><h5>
+	<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+			<h4 class="modal-title" id="exampleModalLabel">Register</h4>
+		  </div>
+		  <div class="modal-body">
+        <div class="container">
+          <form method="post" action="{{ url_for('register') }}" class="form-group">
+              <label for="firstname">First name</label>
+              <input class="form-control" name="firstname" type="text">
+              <label for="lastname">Last name</label>
+              <input class="form-control" name="lastname" type="text">
+              <label for="email">Email Address</label>
+              <input class="form-control" name="email" type="text">
+              <label for="password">Password</label>
+              <input class="form-control" name="password" type="password">
+              <label for="bsrcolor">BsrColor</label>
+              <input class="form-control" name="bsrcolor" type="text">
+          		<p><input type=submit value=Register>
+          </form>
+        </div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+    </ul>
+
+</ul>
+
+</div>
+
+</header>
+{% block content %}
+<body>
+  <div class="col-lg-12 col-xs-12 text-center">
+     <h1><small>The Future is <u>ours</u> to <u>Predict</u></small></h1>
+				<h2><small><span class="glyphicon glyphicon-search"></span> Discover <u>weak signals</u></small></h2>
+				<h2><small><span class="glyphicon glyphicon-share"></span> Share Your Sightings</small> </h2>
+				<h2><small><span class="glyphicon glyphicon-user"></span> Join The Community</small> </h2>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#register"><span class="glyphicon glyphicon-pencil"></span> Register</button>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#uploadModal">Upload a Signal</button>
+  </div>
+
+        <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Upload Signal</h4>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <div class="col-xs-5">
+                    <form method=post enctype=multipart/form-data>
+                      <h3><small>Your Signal</small></h3>
+                      <p><input type=file name=file id="imgInp">
+                        <img id="blah" class="img-responsive" src="#" alt="image">
+                      <div class="form-group">
+                        <label for="bsrcolor">Bsrcolor</label>
+                        <input type="text" name="bsrcolor" class="form-control">
+                        <label for="description">Description (min. 140 characters)</label>
+                        <textarea class="form-control message" name="description" rows="5" id="description"></textarea>
+                        <span class="countdown"></span>
+                        <h3><small>Tags</small></h3>
+                        <input class="form-control" type="text" name="tag">
+
+
+
+
+                      </div>
+                      <input type=submit value=Upload>
+                    </form>
+                </div>
+              </div>
+              </div>
+            </div>
+	    </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="{{ url_for('static', filename='image-reader.js') }}"></script>
+
+
+</html>
